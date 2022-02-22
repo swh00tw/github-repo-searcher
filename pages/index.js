@@ -12,7 +12,7 @@ function Home({}) {
   const [loading, setLoading] = useState(false);
 
   return (
-    <PageMotionContainer>
+    <PageMotionContainer duration={0.8}>
       <Flex w='100%' h='100%' py={150} align='center' justify='center'>
         <Box w={{ base: '90%', md: '50%' }} h='60%' bg={useColorModeValue('cyan.500', 'cyan.700')} borderRadius={'3xl'} color='white' flexDirection={'column'}>
           <Heading fontSize={{ base: '4xl', md: '6xl' }} mt={10} px={5}>

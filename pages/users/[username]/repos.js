@@ -2,6 +2,7 @@ import { Flex, Box, Text } from '@chakra-ui/react';
 import getGithubRepoInfo from '../../../utils/githubAPI';
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
+import PageMotionContainer from '../../../components/PageMotionContainer';
 
 export async function getServerSideProps(context) {
   const res = await getGithubRepoInfo(context.params.username, 1);
@@ -40,18 +41,50 @@ function repos({ username, githubRepoInfo }) {
     }
   }, [inView]);
 
-  return (
-    <Flex minH={'100vh'} flexDirection='column'>
-      {repos.map(repo => {
-        return (
-          <Box h='100px' bg='cyan.200' w='100%' my={1} key={repo.id} align='center' justify='center'>
-            <Text>{repo.name}</Text>
-          </Box>
-        );
-      })}
-      <div ref={ref} />
-    </Flex>
-  );
+  if (repos === null) {
+    //   user does not exist
+    return (
+      // ! TODO
+      <PageMotionContainer duration={0.8}>
+        <Flex minH={'85vh'} flexDirection='column' align='center' justify='center'>
+          <Text fontSize={'7xl'} fontFamily='Montserrat'>
+            Oops. It seems like {username} does not exist. 🥵
+          </Text>
+        </Flex>
+      </PageMotionContainer>
+    );
+  } else {
+    // normal case
+    if (repos.length != 0) {
+      return (
+        <PageMotionContainer duration={0.8}>
+          <Flex minH={'100vh'} flexDirection='column'>
+            {repos.map(repo => {
+              return (
+                <Box h='100px' bg='cyan.200' w='100%' my={1} key={repo.id} align='center' justify='center'>
+                  <Text>{repo.name}</Text>
+                </Box>
+              );
+            })}
+            <div ref={ref} />
+          </Flex>
+        </PageMotionContainer>
+      );
+    }
+    // repos length = 0
+    else {
+      // ! TODO
+      return (
+        <PageMotionContainer duration={0.8}>
+          <Flex minH={'100vh'} flexDirection='column'>
+            <Text fontSize={'7xl'} fontFamily='Montserrat'>
+              {username} has no repo now. 😮
+            </Text>
+          </Flex>
+        </PageMotionContainer>
+      );
+    }
+  }
 }
 
 export default repos;
