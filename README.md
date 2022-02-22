@@ -4,9 +4,14 @@
 
 1. clone the repo
 
-2. run at localhost poat 3000
+2. setup
 ```
 cd github-repo-searcher && yarn
+touch .env
+```
+3. fill your Github token in .env
+4. run on localhost port 3000
+```
 yarn run dev
 ```
 
@@ -34,3 +39,7 @@ $PROJECT_ROOT
 │   // Some helper function and API
 └── utils
 ```
+
+# API call
+
+Open utils/githubAPI for more details
