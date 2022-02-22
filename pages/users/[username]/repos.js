@@ -8,6 +8,7 @@ import Link from 'next/link';
 import UserCard from '../../../components/UserCard';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
 import RepoCard from '../../../components/RepoCard';
+import SkeletonRow from '../../../components/SkeletonRow';
 
 export async function getServerSideProps(context) {
   const res = await getGithubRepoInfo(context.params.username, 1, 10);
@@ -23,6 +24,7 @@ export async function getServerSideProps(context) {
 
 function repos({ username, githubRepoInfo, githubUserInfo }) {
   //console.log(githubUserInfo);
+  const [loading, setLoading] = useState(false);
   const [repos, setRepos] = useState(githubRepoInfo);
   const [pageOffset, setPageOffset] = useState(2);
   const [finished, setFinished] = useState(false);
@@ -33,6 +35,7 @@ function repos({ username, githubRepoInfo, githubUserInfo }) {
   // increment fetching repos
   useEffect(() => {
     const updateRepos = async () => {
+      setLoading(true);
       const raw_res = await fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=10&page=${pageOffset}`);
       const res = await raw_res.json();
       if (res.length === 0) {
@@ -40,6 +43,7 @@ function repos({ username, githubRepoInfo, githubUserInfo }) {
       }
       setRepos([...repos, ...res]);
       setPageOffset(pageOffset + 1);
+      setLoading(false);
     };
 
     if (!finished) {
@@ -87,10 +91,12 @@ function repos({ username, githubRepoInfo, githubUserInfo }) {
               </Link>
             </Flex>
             <UserCard githubUserInfo={githubUserInfo} />
-            <Flex flexDirection={'row'}></Flex>
             {repos.map(repo => {
               return <RepoCard repo={repo} key={repo.id} />;
             })}
+            <Flex flexDirection={'row'}>
+              <SkeletonRow loading={loading} />
+            </Flex>
             <div ref={ref} />
           </Flex>
         </PageMotionContainer>
