@@ -1,20 +1,25 @@
-import { Flex, Box, Text } from '@chakra-ui/react';
-import getGithubRepoInfo from '../../../utils/githubAPI';
+import { Flex, Box, Text, Button, useColorModeValue } from '@chakra-ui/react';
+import { getGithubRepoInfo, getGithubUserInfo } from '../../../utils/githubAPI';
 import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PageMotionContainer from '../../../components/PageMotionContainer';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export async function getServerSideProps(context) {
   const res = await getGithubRepoInfo(context.params.username, 1);
+  const userInfo = await getGithubUserInfo(context.params.username);
   return {
     props: {
       username: context.params.username,
       githubRepoInfo: res,
+      githubUserInfo: userInfo,
     },
   };
 }
 
-function repos({ username, githubRepoInfo }) {
+function repos({ username, githubRepoInfo, githubUserInfo }) {
+  //console.log(githubUserInfo);
   const [repos, setRepos] = useState(githubRepoInfo);
   const [pageOffset, setPageOffset] = useState(2);
   const [finished, setFinished] = useState(false);
@@ -41,7 +46,7 @@ function repos({ username, githubRepoInfo }) {
     }
   }, [inView]);
 
-  if (repos === null) {
+  if (repos === null || githubUserInfo === null) {
     //   user does not exist
     return (
       // ! TODO
@@ -50,6 +55,15 @@ function repos({ username, githubRepoInfo }) {
           <Text fontSize={'7xl'} fontFamily='Montserrat'>
             Oops. It seems like {username} does not exist. 🥵
           </Text>
+          <Link href='/'>
+            <a>
+              <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                <Button mt={20} p={10} size='lg' bg={useColorModeValue('cyan.500', 'cyan.700')} fontFamily='Montserrat' variant='solid'>
+                  Back to homepage
+                </Button>
+              </motion.div>
+            </a>
+          </Link>
         </Flex>
       </PageMotionContainer>
     );
@@ -59,6 +73,7 @@ function repos({ username, githubRepoInfo }) {
       return (
         <PageMotionContainer duration={0.8}>
           <Flex minH={'100vh'} flexDirection='column'>
+            <Flex flexDirection={'row'}></Flex>
             {repos.map(repo => {
               return (
                 <Box h='100px' bg='cyan.200' w='100%' my={1} key={repo.id} align='center' justify='center'>
@@ -76,10 +91,19 @@ function repos({ username, githubRepoInfo }) {
       // ! TODO
       return (
         <PageMotionContainer duration={0.8}>
-          <Flex minH={'100vh'} flexDirection='column'>
+          <Flex minH={'85vh'} flexDirection='column' align='center' justify='center'>
             <Text fontSize={'7xl'} fontFamily='Montserrat'>
               {username} has no repo now. 😮
             </Text>
+            <Link href='/'>
+              <a>
+                <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+                  <Button mt={20} p={10} size='lg' bg={useColorModeValue('cyan.500', 'cyan.700')} fontFamily='Montserrat' variant='solid'>
+                    Back to homepage
+                  </Button>
+                </motion.div>
+              </a>
+            </Link>
           </Flex>
         </PageMotionContainer>
       );

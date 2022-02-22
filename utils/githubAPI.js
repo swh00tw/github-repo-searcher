@@ -25,4 +25,14 @@ const getGithubRepoInfo = async (username, offset) => {
   }
 };
 
-export default getGithubRepoInfo;
+const getGithubUserInfo = async username => {
+  try {
+    let res = await instance.get(`${username}`);
+    // console.log(res.data);
+    return res.data;
+  } catch (e) {
+    return null;
+  }
+};
+
+export { getGithubRepoInfo, getGithubUserInfo };
