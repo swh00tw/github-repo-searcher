@@ -42,4 +42,4 @@ $PROJECT_ROOT
 
 # API call
 
-Open utils/githubAPI for more details
+Open ```utils/githubAPI``` for more details
