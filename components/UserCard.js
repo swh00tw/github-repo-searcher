@@ -20,59 +20,59 @@ function UserCard({ githubUserInfo }) {
         <Image src={githubUserInfo.avatar_url} alt='homepage' borderRadius={'full'} />
       </Flex>
       <Flex w={{ base: '100%', md: '60%' }} my={5} flexDirection='column' align='center'>
-        <Flex w='80%' justify={'start'} mb={2}>
-          <Flex pr={10}>
-            <Tag colorScheme={'cyan'} variant='solid'>
+        <Flex w='80%' justify={'space-between'} mb={2} flexDirection={{ base: 'column', md: 'row' }} align='center'>
+          <Flex flexDirection={{ base: 'column', md: 'row' }}>
+            <Tag mr={{ md: 5 }} colorScheme={'cyan'} variant='solid'>
               Username
             </Tag>
-            <Text ml='5'>{githubUserInfo.login}</Text>
+            <Text>{githubUserInfo.login}</Text>
           </Flex>
           {githubUserInfo.location ? (
-            <Flex pr={10}>
-              <Tag colorScheme={'cyan'} variant='solid'>
+            <Flex flexDirection={{ base: 'column', md: 'row' }}>
+              <Tag mr={{ md: 5 }} colorScheme={'cyan'} variant='solid'>
                 Location
               </Tag>
-              <Text ml='5'>{githubUserInfo.location}</Text>
+              <Text>{githubUserInfo.location}</Text>
             </Flex>
           ) : (
             <></>
           )}
         </Flex>
-        <Flex w='80%' justify={'start'} mb={2}>
-          <Flex pr={10}>
-            <Tag colorScheme={'cyan'} variant='solid'>
+        <Flex w='80%' justify={'space-between'} mb={2} flexDirection={{ base: 'column', md: 'row' }} align='center'>
+          <Flex flexDirection={{ base: 'column', md: 'row' }}>
+            <Tag mr={{ md: 5 }} colorScheme={'cyan'} variant='solid'>
               Public repos
             </Tag>
-            <Text ml='5'>{githubUserInfo.public_repos}</Text>
+            <Text>{githubUserInfo.public_repos}</Text>
           </Flex>
-          <Flex pr={10}>
-            <Tag colorScheme={'cyan'} variant='solid'>
+          <Flex flexDirection={{ base: 'column', md: 'row' }}>
+            <Tag mr={{ md: 5 }} colorScheme={'cyan'} variant='solid'>
               Followers
             </Tag>
-            <Text ml='5'>{githubUserInfo.followers}</Text>
+            <Text>{githubUserInfo.followers}</Text>
           </Flex>
-          <Flex pr={10}>
-            <Tag colorScheme={'cyan'} variant='solid'>
+          <Flex flexDirection={{ base: 'column', md: 'row' }}>
+            <Tag mr={{ md: 5 }} colorScheme={'cyan'} variant='solid'>
               Following
             </Tag>
-            <Text ml='5'>{githubUserInfo.following}</Text>
+            <Text>{githubUserInfo.following}</Text>
           </Flex>
         </Flex>
         {githubUserInfo.bio ? (
-          <Flex w='80%' justify={'start'} mb={2}>
+          <Flex w='80%' justify={'start'} mb={2} flexDirection={{ base: 'column', md: 'row' }} align='center'>
             <Flex>
-              <Tag colorScheme={'cyan'} variant='solid' mr={3} size='md'>
+              <Tag mr={{ md: 5 }} colorScheme={'cyan'} variant='solid' size='md'>
                 Bio
               </Tag>
             </Flex>
-            <Flex w='80%' overflow={'auto'} bg='gray.400' borderRadius='2xl' p={1}>
+            <Flex w='80%' overflow={'auto'} bg='gray.400' borderRadius='2xl' p={1} mt={1}>
               <Text ml='5'>{githubUserInfo.bio}</Text>
             </Flex>
           </Flex>
         ) : (
           <></>
         )}
-        <Flex w='60%' justify={'end'} mb={2} mt={5}>
+        <Flex w='60%' justify={'end'} mb={2} mt={5} flexDirection={{ base: 'column', md: 'row' }} align='center'>
           {githubUserInfo.blog ? (
             <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
               <Link href={githubUserInfo.blog.includes('https://') ? githubUserInfo.blog : 'https://' + githubUserInfo.blog}>
@@ -88,7 +88,7 @@ function UserCard({ githubUserInfo }) {
           )}
           <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
             <Button
-              ml={5}
+              ml={{ md: '5' }}
               leftIcon={<FaGithub />}
               size='lg'
               onClick={() => {
