@@ -10,8 +10,6 @@ cd github-repo-searcher && yarn
 yarn run dev
 ```
 
----
-
 # Stucture
 
 Powered by NextJS, ChakraUI
