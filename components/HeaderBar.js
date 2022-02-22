@@ -20,7 +20,13 @@ function HeaderBar() {
       </Heading>
       <Flex>
         <ThemeToggleButton />
-        <Button mx={5} leftIcon={<FaGithub />} bg={useColorModeValue('cyan.300', 'cyan.500')}>
+        <Button
+          mx={5}
+          leftIcon={<FaGithub />}
+          bg={useColorModeValue('cyan.300', 'cyan.500')}
+          onClick={() => {
+            window.open('https://github.com/swh00tw/Github-repo-searching', '_blank');
+          }}>
           Github repo
         </Button>
       </Flex>
