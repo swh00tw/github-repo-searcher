@@ -82,7 +82,7 @@ function repo({ username, reponame, repo }) {
             {/* row3 */}
             <Flex w='100%' flexDirection={{ base: 'column', md: 'row' }} mb={3}>
               <Flex w={{ base: '80%', md: '40%' }}>
-                <Badge colorScheme='cyan' variant='solid' px={2}>
+                <Badge colorScheme='cyan' variant='solid' px={2} h='25px'>
                   Description
                 </Badge>
               </Flex>
@@ -126,11 +126,13 @@ function repo({ username, reponame, repo }) {
           </Box>
           <Flex w={{ base: '80%', md: '50%' }} justify='end' my={10}>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <Link href={repo.html_url}>
-                <a>
-                  <Button rightIcon={<ArrowRightIcon />}>Go to Github</Button>
-                </a>
-              </Link>
+              <Button
+                rightIcon={<ArrowRightIcon />}
+                onClick={() => {
+                  window.open(repo.html_url, '_blank');
+                }}>
+                Go to Github
+              </Button>
             </motion.div>
           </Flex>
         </Flex>
