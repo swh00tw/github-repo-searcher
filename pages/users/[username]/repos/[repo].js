@@ -73,7 +73,7 @@ function repo({ username, reponame, repo }) {
               </Flex>
               <Link href={repo.owner.html_url}>
                 <a>
-                  <Flex w={{ base: '80%', md: '60%' }}>
+                  <Flex w={'100%'}>
                     <Text>{repo.owner.login}</Text>
                   </Flex>
                 </a>
