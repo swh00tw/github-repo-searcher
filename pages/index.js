@@ -16,7 +16,7 @@ function Home({}) {
       <Flex w='100%' h='100%' py={150} align='center' justify='center'>
         <Box w={{ base: '90%', md: '50%' }} h='60%' bg={useColorModeValue('cyan.500', 'cyan.700')} borderRadius={'3xl'} color='white' flexDirection={'column'}>
           <Heading fontSize={{ base: '4xl', md: '6xl' }} mt={10} px={5}>
-            Type in Github username
+            Input Github username
           </Heading>
           <Heading fontSize={{ base: '4xl', md: '6xl' }} mt={10} px={5}>
             & browse all repos 💫
@@ -36,9 +36,9 @@ function Home({}) {
             </InputGroup>
           </Flex>
           <Flex justify='center' pb={10} px={10}>
-            <Link href={`/users/${search}/repos`}>
+            <Link href={search === '' ? '/' : `/users/${search}/repos`}>
               <a>
-                <motion.div whileHover={{ scale: 1.2 }}>
+                <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
                   <Button
                     size='lg'
                     variant='outline'
