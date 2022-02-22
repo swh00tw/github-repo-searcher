@@ -1,6 +1,7 @@
 import { Flex, useColorModeValue, Image, Tag, Text, Button } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FaIcons, FaGithub } from 'react-icons/fa';
+import Link from 'next/link';
 
 function UserCard({ githubUserInfo }) {
   return (
@@ -74,14 +75,13 @@ function UserCard({ githubUserInfo }) {
         <Flex w='60%' justify={'end'} mb={2} mt={5}>
           {githubUserInfo.blog ? (
             <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
-              <Button
-                leftIcon={<FaIcons />}
-                size='lg'
-                onClick={() => {
-                  window.open('https://' + githubUserInfo.blog, '_blank');
-                }}>
-                Blog
-              </Button>
+              <Link href={githubUserInfo.blog.includes('https://') ? githubUserInfo.blog : 'https://' + githubUserInfo.blog}>
+                <a>
+                  <Button leftIcon={<FaIcons />} size='lg'>
+                    Blog
+                  </Button>
+                </a>
+              </Link>
             </motion.div>
           ) : (
             <></>
