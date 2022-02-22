@@ -7,9 +7,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import UserCard from '../../../components/UserCard';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
+import RepoCard from '../../../components/RepoCard';
 
 export async function getServerSideProps(context) {
-  const res = await getGithubRepoInfo(context.params.username, 1);
+  const res = await getGithubRepoInfo(context.params.username, 1, 10);
   const userInfo = await getGithubUserInfo(context.params.username);
   return {
     props: {
@@ -88,11 +89,7 @@ function repos({ username, githubRepoInfo, githubUserInfo }) {
             <UserCard githubUserInfo={githubUserInfo} />
             <Flex flexDirection={'row'}></Flex>
             {repos.map(repo => {
-              return (
-                <Box h='100px' bg='cyan.200' w='100%' my={1} key={repo.id} align='center' justify='center'>
-                  <Text>{repo.name}</Text>
-                </Box>
-              );
+              return <RepoCard repo={repo} key={repo.id} />;
             })}
             <div ref={ref} />
           </Flex>
