@@ -9,12 +9,12 @@ const instance = axios.create({
   },
 });
 
-const getGithubRepoInfo = async (username, offset) => {
+const getGithubRepoInfo = async (username, offset, per_page) => {
   try {
     let res = await instance.get(`${username}/repos`, {
       params: {
         sort: 'created',
-        per_page: 10,
+        per_page: per_page,
         page: offset,
       },
     });
