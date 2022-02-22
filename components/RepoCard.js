@@ -1,8 +1,10 @@
 import { Box, Flex, Tag, Button, Heading, useColorModeValue, Divider } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
+import { useState } from 'react';
 
 function RepoCard({ repo, route }) {
+  const [loading, setLoading] = useState(false);
   const { owner, html_url, updated_at, name, description, stargazers_count } = repo;
 
   const timeTag = new Date(updated_at);
@@ -41,7 +43,17 @@ function RepoCard({ repo, route }) {
         <Flex flexDirection={{ base: 'column', md: 'row' }} w={{ base: '100%', md: '30%' }} justify={{ base: 'center', md: 'end' }} align='center' py={4}>
           <Link href={`/users/${owner.login}/repos/${name}`}>
             <a>
-              <Button m={1} rightIcon={<ChevronRightIcon />} size='lg' _focus={{ border: 'none' }} variant='outline' borderWidth={3}>
+              <Button
+                m={1}
+                rightIcon={<ChevronRightIcon />}
+                size='lg'
+                _focus={{ border: 'none' }}
+                variant='outline'
+                borderWidth={3}
+                isLoading={loading}
+                onClick={() => {
+                  setLoading(true);
+                }}>
                 Profile
               </Button>
             </a>
