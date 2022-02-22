@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 
 function Home({}) {
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
 
   return (
     <PageMotionContainer>
@@ -35,11 +36,23 @@ function Home({}) {
             </InputGroup>
           </Flex>
           <Flex justify='center' pb={10} px={10}>
-            <motion.div whileHover={{ scale: 1.2 }}>
-              <Button size='lg' variant='outline' rightIcon={<ArrowRightIcon />}>
-                Search
-              </Button>
-            </motion.div>
+            <Link href={`/users/${search}/repos`}>
+              <a>
+                <motion.div whileHover={{ scale: 1.2 }}>
+                  <Button
+                    size='lg'
+                    variant='outline'
+                    rightIcon={<ArrowRightIcon />}
+                    isLoading={loading}
+                    isDisabled={search === ''}
+                    onClick={() => {
+                      setLoading(true);
+                    }}>
+                    Search
+                  </Button>
+                </motion.div>
+              </a>
+            </Link>
           </Flex>
         </Box>
       </Flex>
