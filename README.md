@@ -9,7 +9,7 @@
 cd github-repo-searcher && yarn
 touch .env
 ```
-3. fill your Github token in .env
+3. Insert your Github token in .env
 4. run on localhost port 3000
 ```
 yarn run dev
