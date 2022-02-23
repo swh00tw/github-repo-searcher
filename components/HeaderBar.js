@@ -25,7 +25,7 @@ function HeaderBar() {
           leftIcon={<FaGithub />}
           bg={useColorModeValue('cyan.300', 'cyan.500')}
           onClick={() => {
-            window.open('https://github.com/swh00tw/Github-repo-searching', '_blank');
+            window.open('https://github.com/swh00tw/github-repo-searcher', '_blank');
           }}>
           Github repo
         </Button>
