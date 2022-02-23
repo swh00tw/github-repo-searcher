@@ -78,7 +78,7 @@ function UserCard({ githubUserInfo }) {
               <Link href={githubUserInfo.blog.includes('https://') ? githubUserInfo.blog : 'https://' + githubUserInfo.blog}>
                 <a>
                   <Button leftIcon={<FaIcons />} size='lg'>
-                    Blog
+                    Website
                   </Button>
                 </a>
               </Link>
