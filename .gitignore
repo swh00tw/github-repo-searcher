@@ -31,3 +31,6 @@ yarn-error.log*
 .env
 
 test.http
+
+report.pages
+report.pdf
