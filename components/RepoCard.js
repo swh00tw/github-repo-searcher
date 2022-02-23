@@ -15,7 +15,7 @@ function RepoCard({ repo, route }) {
 
   return (
     <>
-      <Flex w={{ base: '80%', md: '50%' }} borderRadius='xl' justify='center' flexDirection={{ base: 'column', md: 'row' }}>
+      <Flex w={{ base: '80%', md: '70%' }} borderRadius='xl' justify='center' flexDirection={{ base: 'column', md: 'row' }}>
         <Flex w={{ base: '100%', md: '70%' }} flexDirection='column' justify='center'>
           <Flex justifyContent={{ base: 'center', md: 'start' }}>
             <Heading fontFamily='Montserrat' fontWeight='700' fontSize={{ base: 'lg', md: '2xl' }} isTruncated>
@@ -72,7 +72,7 @@ function RepoCard({ repo, route }) {
           </Button>
         </Flex>
       </Flex>
-      <Divider w='60%' mt={3} mb={5} borderWidth={2} />
+      <Divider w='70%' mt={3} mb={5} borderWidth={2} />
     </>
   );
 }
