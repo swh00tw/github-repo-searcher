@@ -7,7 +7,7 @@ function UserCard({ githubUserInfo }) {
   return (
     <Flex
       flexDirection={{ base: 'column', md: 'row' }}
-      w={{ base: '80%', md: '60%' }}
+      w={{ base: '80%', md: '70%' }}
       bg={useColorModeValue('gray.300', 'gray.300')}
       p={5}
       my={20}
