@@ -15,7 +15,7 @@ touch .env
 yarn run dev
 ```
 
-# Stucture
+# Structure
 
 Powered by NextJS, ChakraUI
 
